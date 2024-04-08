@@ -54,8 +54,8 @@ def faceswap_tab():
                             mask_erosion = gr.Slider(1.0, 3.0, value=1.0, label="Erosion Iterations", step=1.00, interactive=True)
                             mask_blur = gr.Slider(10.0, 50.0, value=20.0, label="Blur size", step=1.00, interactive=True)
                             bt_toggle_masking = gr.Button("Toggle manual masking", variant='secondary', size='sm')
-                            chk_useclip = gr.Checkbox(label="Use Text Masking", value=False)
-                            clip_text = gr.Textbox(label="List of objects to mask and restore back on fake image", value="cup,hands,hair,banana" ,elem_id='tooltip')
+                            chk_useclip = gr.Checkbox(label="Use Text Masking", value=True)
+                            clip_text = gr.Textbox(label="List of objects to mask and restore back on fake image", value="penis,tongue,fingers,hand,arm,leg" ,elem_id='tooltip')
                             gr.Dropdown(["Clip2Seg"], value="Clip2Seg", label="Engine")
                             bt_preview_mask = gr.Button("👥 Show Mask Preview", variant='secondary')
                         bt_remove_selected_input_face = gr.Button("❌ Remove selected", size='sm')
@@ -98,13 +98,13 @@ def faceswap_tab():
         with gr.Row(variant='panel'):
             with gr.Column(scale=1):
                 selected_face_detection = gr.Dropdown(["First found", "All female", "All male", "All faces", "Selected face"], value="First found", label="Specify face selection for swapping")
-                max_face_distance = gr.Slider(0.01, 1.0, value=0.65, label="Max Face Similarity Threshold")
+                max_face_distance = gr.Slider(0.01, 1.0, value=0.76, label="Max Face Similarity Threshold")
                 video_swapping_method = gr.Dropdown(["Extract Frames to media","In-Memory processing"], value="In-Memory processing", label="Select video processing method", interactive=True)
                 no_face_action = gr.Dropdown(choices=no_face_choices, value=no_face_choices[0], label="Action on no face detected", interactive=True)
                 vr_mode = gr.Checkbox(label="VR Mode", value=False)
             with gr.Column(scale=1):
-                ui.globals.ui_selected_enhancer = gr.Dropdown(["None", "Codeformer", "DMDNet", "GFPGAN", "GPEN", "Restoreformer++"], value="None", label="Select post-processing")
-                ui.globals.ui_blend_ratio = gr.Slider(0.0, 1.0, value=0.65, label="Original/Enhanced image blend ratio")
+                ui.globals.ui_selected_enhancer = gr.Dropdown(["None", "Codeformer", "DMDNet", "GFPGAN", "GPEN", "Restoreformer++"], value="GFPGAN", label="Select post-processing")
+                ui.globals.ui_blend_ratio = gr.Slider(0.0, 1.0, value=0.85, label="Original/Enhanced image blend ratio")
                 with gr.Group():
                     autorotate = gr.Checkbox(label="Auto rotate horizontal Faces", value=True)
                     roop.globals.skip_audio = gr.Checkbox(label="Skip audio", value=False)
